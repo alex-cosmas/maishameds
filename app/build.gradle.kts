@@ -83,7 +83,6 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
 
-
     // Material and AndroidX
     implementation(Libraries.constraintLayout)
     implementation(Libraries.appCompat)
@@ -142,4 +141,3 @@ dependencies {
     testImplementation(TestLibraries.archComponentTest)
     testImplementation(TestLibraries.liveDataTesting)
 }
-
