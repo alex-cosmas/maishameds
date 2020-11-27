@@ -4,6 +4,8 @@
   <color name="colorPrimaryDark">#3700B3</color>
   <color name="colorAccent">#03DAC5</color>
 
+  <color name="blue">#ff0366d6</color>
+
   <color name="textPrimary">#ff050505</color>
   <color name="textSecondary">#ff2f3037</color>
   <color name="textTertiary">#ff525560</color>
@@ -12,4 +14,6 @@
   <color name="backgroundSecondary">#ffffffff</color>
   <color name="backgroundPrimary">#ffeff0f5</color>
 
+  <color name="snackbarTextColor">@android:color/white</color>
+  <color name="snackbarActionTextColor">#ffffd33d</color>
 </resources>

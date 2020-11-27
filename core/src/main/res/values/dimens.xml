@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--    toolbar-->
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_inset_start">@dimen/margin_normal</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
+
     <!--    text size-->
-    <dimen name="body_text_size_small">14sp</dimen>
-    <dimen name="body_text_size">16sp</dimen>
+    <dimen name="body_text_size_small">13sp</dimen>
+    <dimen name="body_text_size">14sp</dimen>
 
     <!--    margin-->
     <dimen name="margin_largest">24dp</dimen>
@@ -15,5 +22,9 @@
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_medium">12dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+
+    <!--    elevation-->
+    <dimen name="default_elevation">1dp</dimen>
+    <dimen name="bottom_sheet_elevation">12dp</dimen>
 
 </resources>
