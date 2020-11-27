@@ -1,5 +1,5 @@
 /*
- * Copyright $YEAR MaishaMeds
+ * Copyright 2020 MaishaMeds
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.maishameds.data
+
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import org.maishameds.data.dao.PostDao
+import org.maishameds.data.model.Post
+
+@androidx.room.Database(
+    entities = [
+        Post::class
+    ],
+    version = 1,
+    exportSchema = false
+)
+@TypeConverters(DateConverter::class)
+abstract class Database : RoomDatabase() {
+
+    abstract fun postDao(): PostDao
+}

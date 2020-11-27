@@ -23,5 +23,8 @@ pluginManagement {
         }
     }
 }
+
 include("app")
-rootProject.name = "GradlePlugins"
+include(":core")
+
+rootProject.name = "MaishaMeds"

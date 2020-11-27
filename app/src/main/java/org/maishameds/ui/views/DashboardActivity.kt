@@ -1,5 +1,5 @@
 /*
- * Copyright $YEAR MaishaMeds
+ * Copyright 2020 MaishaMeds
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.maishameds.ui.views
+
+import android.os.Bundle
+import org.maishameds.R
+import org.maishameds.databinding.ActivityDashboardBinding
+
+class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.lifecycleOwner = this
+    }
+
+    override val layoutResId: Int
+        get() = R.layout.activity_dashboard
+}

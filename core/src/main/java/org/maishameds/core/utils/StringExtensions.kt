@@ -1,5 +1,5 @@
 /*
- * Copyright $YEAR MaishaMeds
+ * Copyright 2020 MaishaMeds
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.maishameds.core.utils
+
+/**
+ * Responsible for forcing an http url to https
+ *
+ * @return the url in https, if an http url format is passed
+ */
+fun String?.toHttps(): String {
+    // Default to https
+    val http = "http"
+    val https = "https"
+    val url = this ?: https
+    return if (!url.contains(https)) {
+        url.replace(http, https)
+    } else url
+}

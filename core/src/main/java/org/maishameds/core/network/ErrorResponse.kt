@@ -1,5 +1,5 @@
 /*
- * Copyright $YEAR MaishaMeds
+ * Copyright 2020 MaishaMeds
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.maishameds.core.network
+
+import com.google.gson.annotations.SerializedName
+
+data class ErrorResponse(
+    @SerializedName("errors")
+    val errors: List<Any>?,
+    @SerializedName("message")
+    val message: String?,
+    @SerializedName("status")
+    val status: String?
+)

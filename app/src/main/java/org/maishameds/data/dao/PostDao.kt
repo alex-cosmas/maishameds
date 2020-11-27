@@ -1,5 +1,5 @@
 /*
- * Copyright $YEAR MaishaMeds
+ * Copyright 2020 MaishaMeds
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.maishameds.data.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import org.maishameds.data.model.Post
+
+@Dao
+interface PostDao : BaseDao<Post> {
+
+    @Query("SELECT * FROM Post")
+    fun getPosts(): Flow<List<Post>>
+}
