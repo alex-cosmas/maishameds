@@ -12,6 +12,7 @@ object Versions {
     const val crashlytics = "17.2.1"
 
     //Networking
+    const val retrofit = "2.9.0"
     const val okhttp = "4.8.1"
     const val loggingInterceptor = "4.8.1"
 
@@ -95,6 +96,8 @@ object Libraries {
     const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.crashlytics}"
 
     // Networking - Retrofit, OKHTTP and loggingInterceptor
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val ohttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"

@@ -66,7 +66,9 @@ dependencies {
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
 
-    // Network - ApolloClient, OKHTTP, Chuck
+    // Network - Retrofit, OKHTTP, Chuck
+    implementation(Libraries.retrofit)
+    implementation(Libraries.gson)
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
     debugImplementation(Libraries.chunkDebug)
