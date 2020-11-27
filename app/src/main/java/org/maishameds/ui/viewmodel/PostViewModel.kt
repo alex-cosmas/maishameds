@@ -13,19 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.maishameds
+package org.maishameds.ui.viewmodel
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import org.maishameds.data.repository.PostRepository
 
-/**
- *  Main Activity which is the Launcher Activity
- */
-
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}
+class PostViewModel(
+    private val postRepository: PostRepository
+) : ViewModel()

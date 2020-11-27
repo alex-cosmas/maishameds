@@ -23,5 +23,8 @@ pluginManagement {
         }
     }
 }
+
 include("app")
+include(":core")
+
 rootProject.name = "MaishaMeds"
