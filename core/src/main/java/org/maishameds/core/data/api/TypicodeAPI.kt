@@ -20,6 +20,6 @@ import retrofit2.http.GET
 
 interface TypicodeAPI {
 
-    @GET("/posts")
+    @GET("posts")
     suspend fun fetchPosts(): List<PostsResponse>
 }
