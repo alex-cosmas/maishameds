@@ -47,7 +47,7 @@ internal class PostsAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
 
-    inner class ViewHolder(val binding: ListItemPostBinding) :
+    inner class ViewHolder(private val binding: ListItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Post) {
             binding.post = item
