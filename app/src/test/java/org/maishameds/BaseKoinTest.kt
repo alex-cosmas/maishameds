@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.maishameds.core.data.api
+package org.maishameds
 
-import org.maishameds.core.data.network.PostsResponse
-import retrofit2.http.GET
+import org.junit.Rule
+import org.koin.test.KoinTest
+import org.maishameds.util.KoinTestRule
 
-interface TypicodeAPI {
+abstract class BaseKoinTest : KoinTest {
 
-    @GET("posts")
-    suspend fun fetchPosts(): List<PostsResponse>
+    @get:Rule
+    val koinTestRule = KoinTestRule()
 }

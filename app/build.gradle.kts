@@ -26,7 +26,7 @@ android {
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "org.maishameds.runner.MockTestRunner"
     }
 
     testOptions {
@@ -92,6 +92,12 @@ dependencies {
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
 
+    // Network - Retrofit, OKHTTP, Chuck
+    implementation(Libraries.retrofit)
+    implementation(Libraries.gson)
+    implementation(Libraries.ohttp)
+    implementation(Libraries.loggingInterceptor)
+
     // Room
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
@@ -135,6 +141,7 @@ dependencies {
     testImplementation(TestLibraries.mockK)
     testImplementation(TestLibraries.roboelectric)
     testImplementation(TestLibraries.truth)
+    testImplementation(TestLibraries.mockWebServer)
     testImplementation(TestLibraries.runner)
     testImplementation(TestLibraries.androidXJUnit)
     testImplementation(TestLibraries.coroutinesTest)

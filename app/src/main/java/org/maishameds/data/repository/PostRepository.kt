@@ -15,10 +15,30 @@
  */
 package org.maishameds.data.repository
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import org.maishameds.core.data.api.TypicodeAPI
+import org.maishameds.core.data.network.PostsResponse
+import org.maishameds.core.network.NetworkResult
+import org.maishameds.core.network.flowSafeApiCall
 import org.maishameds.data.dao.PostDao
+import org.maishameds.data.model.Post
 
 class PostRepository(
     private val postDao: PostDao,
     private val typicodeAPI: TypicodeAPI,
-)
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) {
+
+    suspend fun fetchPosts(): Flow<NetworkResult<List<PostsResponse>>> =
+        flowSafeApiCall(ioDispatcher) {
+            return@flowSafeApiCall typicodeAPI.fetchPosts()
+        }
+
+    suspend fun savePosts(posts: List<Post>) =
+        postDao.insert(posts)
+
+    fun getPosts(): Flow<List<Post>> =
+        postDao.getPosts()
+}
