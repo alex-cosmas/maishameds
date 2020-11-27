@@ -19,7 +19,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(indices = [Index(value = ["name"], unique = true)])
+@Entity(indices = [Index(value = ["postID"], unique = true)])
 data class Post(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
