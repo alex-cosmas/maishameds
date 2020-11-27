@@ -15,4 +15,11 @@
  */
 package org.maishameds.core.data.api
 
-interface TypicodeAPI
+import org.maishameds.core.data.network.PostsResponse
+import retrofit2.http.GET
+
+interface TypicodeAPI {
+
+    @GET("/posts")
+    suspend fun fetchPosts(): List<PostsResponse>
+}
