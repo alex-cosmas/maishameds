@@ -13,27 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.maishameds.ui.viewmodel
+package org.maishameds.data.mapper
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.flow.Flow
 import org.maishameds.core.data.network.PostsResponse
-import org.maishameds.core.network.NetworkResult
 import org.maishameds.data.model.Post
-import org.maishameds.data.repository.PostRepository
 
-class PostViewModel(
-    private val postRepository: PostRepository
-) : ViewModel() {
-
-    suspend fun fetchPosts(): Flow<NetworkResult<List<PostsResponse>>> =
-        postRepository.fetchPosts()
-
-    suspend fun savePosts(posts: List<Post>) =
-        postRepository.savePosts(posts)
-
-    fun getPosts(): LiveData<List<Post>> =
-        postRepository.getPosts().asLiveData()
-}
+fun PostsResponse.toResponse(): Post =
+    Post(id = 0, postID = this.id, postTitle = this.title, postBody = this.body)

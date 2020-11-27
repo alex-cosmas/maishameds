@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.maishameds.core.data.api
+package org.maishameds.fake
 
-import org.maishameds.core.data.network.PostsResponse
-import retrofit2.http.GET
+import org.maishameds.data.model.Post
 
-interface TypicodeAPI {
-
-    @GET("posts")
-    suspend fun fetchPosts(): List<PostsResponse>
-}
+val fakePost = listOf(
+    Post(
+        0,
+        1,
+        "quas fugiat ut perspiciatis vero provident",
+        "eum non blanditiis soluta porro quibusdam voluptas\\nvel voluptatem qui placeat dolores qui velit aut\\nvel inventore aut cumque culpa explicabo aliquid at\\nperspiciatis est et voluptatem dignissimos dolor itaque sit nam"
+    )
+)
