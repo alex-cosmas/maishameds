@@ -16,16 +16,11 @@
 package org.maishameds.ui.views
 
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.maishameds.R
 import org.maishameds.core.network.NetworkResult
-import org.maishameds.data.mapper.toResponse
-import org.maishameds.data.model.Post
 import org.maishameds.databinding.ActivityDashboardBinding
 import org.maishameds.ui.adapters.PostsAdapter
 import org.maishameds.ui.viewmodel.PostViewModel
@@ -50,23 +45,18 @@ class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
         )
         binding.recyclerView.adapter = postsAdapter
 
-        lifecycleScope.launch {
-            postViewModel.fetchPosts().collect {
-                when (it) {
-                    is NetworkResult.Success -> {
-                        showSnackbar("Fetched data from Typicode API")
-                        val postLists = mutableListOf<Post>()
-                        it.data.forEach {
-                            postLists.add(it.toResponse())
-                        }
-                        postViewModel.savePosts(postLists)
-                    }
-                    is NetworkResult.ServerError -> {
-                        showSnackbar(it.errorBody?.message ?: "A network error occurred")
-                    }
-                    is NetworkResult.NetworkError -> {
-                        showSnackbar("A network error occurred when making your request")
-                    }
+        postViewModel.fetchPosts()
+
+        postViewModel.postsResponse.observe(this@DashboardActivity) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    showSnackbar("Fetched data from Typicode API")
+                }
+                is NetworkResult.ServerError -> {
+                    showSnackbar(it.errorBody?.message ?: "A network error occurred")
+                }
+                is NetworkResult.NetworkError -> {
+                    showSnackbar("A network error occurred when making your request")
                 }
             }
         }

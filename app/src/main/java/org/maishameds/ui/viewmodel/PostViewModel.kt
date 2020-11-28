@@ -15,10 +15,9 @@
  */
 package org.maishameds.ui.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.maishameds.core.data.network.PostsResponse
 import org.maishameds.core.network.NetworkResult
 import org.maishameds.data.model.Post
@@ -28,11 +27,14 @@ class PostViewModel(
     private val postRepository: PostRepository
 ) : ViewModel() {
 
-    suspend fun fetchPosts(): Flow<NetworkResult<List<PostsResponse>>> =
-        postRepository.fetchPosts()
+    private var _postsResponse = MutableLiveData<NetworkResult<List<PostsResponse>>>()
+    val postsResponse get() = _postsResponse
 
-    suspend fun savePosts(posts: List<Post>) =
-        postRepository.savePosts(posts)
+    fun fetchPosts() = viewModelScope.launch {
+        postRepository.fetchPosts().collect {
+            _postsResponse.postValue(it)
+        }
+    }
 
     fun getPosts(): LiveData<List<Post>> =
         postRepository.getPosts().asLiveData()
