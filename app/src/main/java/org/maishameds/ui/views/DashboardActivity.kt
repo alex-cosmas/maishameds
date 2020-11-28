@@ -16,10 +16,8 @@
 package org.maishameds.ui.views
 
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.maishameds.R
 import org.maishameds.core.network.NetworkResult
@@ -47,18 +45,18 @@ class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
         )
         binding.recyclerView.adapter = postsAdapter
 
-        lifecycleScope.launch {
-            postViewModel.fetchPosts().observe(this@DashboardActivity) {
-                when (it) {
-                    is NetworkResult.Success -> {
-                        showSnackbar("Fetched data from Typicode API")
-                    }
-                    is NetworkResult.ServerError -> {
-                        showSnackbar(it.errorBody?.message ?: "A network error occurred")
-                    }
-                    is NetworkResult.NetworkError -> {
-                        showSnackbar("A network error occurred when making your request")
-                    }
+        postViewModel.fetchPosts()
+
+        postViewModel.postsResponse.observe(this@DashboardActivity) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    showSnackbar("Fetched data from Typicode API")
+                }
+                is NetworkResult.ServerError -> {
+                    showSnackbar(it.errorBody?.message ?: "A network error occurred")
+                }
+                is NetworkResult.NetworkError -> {
+                    showSnackbar("A network error occurred when making your request")
                 }
             }
         }

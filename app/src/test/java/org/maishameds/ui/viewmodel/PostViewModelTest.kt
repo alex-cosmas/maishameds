@@ -53,7 +53,7 @@ class PostViewModelTest : BaseViewModelTest() {
             )
             postViewModel.fetchPosts()
             coVerify { postRepository.fetchPosts() }
-            postViewModel.fetchPosts().test().assertValue(NetworkResult.Success(testPostsResponse))
+            postViewModel.postsResponse.test().assertValue(NetworkResult.Success(testPostsResponse))
         }
     }
 }
