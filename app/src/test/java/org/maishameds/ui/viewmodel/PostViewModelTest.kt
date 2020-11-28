@@ -15,14 +15,19 @@
  */
 package org.maishameds.ui.viewmodel
 
+import com.jraska.livedata.test
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.maishameds.BaseViewModelTest
+import org.maishameds.core.network.NetworkResult
 import org.maishameds.data.repository.PostRepository
+import org.maishameds.data.sample.testPostsResponse
 import org.robolectric.annotation.Config
 
 @Config(manifest = Config.NONE)
@@ -40,9 +45,15 @@ class PostViewModelTest : BaseViewModelTest() {
     @FlowPreview
     @Test
     fun `test fetch posts works successfully`() {
-
-        coEvery {
-            postRepository.fetchPosts()
-        } returns flowOf()
+        runBlocking {
+            coEvery { postRepository.fetchPosts() } returns flowOf(
+                NetworkResult.Success(
+                    testPostsResponse
+                )
+            )
+            postViewModel.fetchPosts()
+            coVerify { postRepository.fetchPosts() }
+            postViewModel.fetchPosts().test().assertValue(NetworkResult.Success(testPostsResponse))
+        }
     }
 }
