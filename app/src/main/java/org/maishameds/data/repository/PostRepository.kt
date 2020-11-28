@@ -23,6 +23,7 @@ import org.maishameds.core.data.network.PostsResponse
 import org.maishameds.core.network.NetworkResult
 import org.maishameds.core.network.flowSafeApiCall
 import org.maishameds.data.dao.PostDao
+import org.maishameds.data.mapper.toResponse
 import org.maishameds.data.model.Post
 
 class PostRepository(
@@ -33,6 +34,12 @@ class PostRepository(
 
     suspend fun fetchPosts(): Flow<NetworkResult<List<PostsResponse>>> =
         flowSafeApiCall(ioDispatcher) {
+            val postResponse = typicodeAPI.fetchPosts()
+            val postLists = mutableListOf<Post>()
+            postResponse.forEach {
+                postLists.add(it.toResponse())
+            }
+            savePosts(postLists)
             return@flowSafeApiCall typicodeAPI.fetchPosts()
         }
 
